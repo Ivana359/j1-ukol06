@@ -19,6 +19,8 @@ public class Aplikace extends JFrame {
     private JTextField kraliciField;
     private JTextField hlavyField;
     private JTextField nohyField;
+    private JSpinner kraliciSpinner;
+    private JSpinner husySpinner;
 
     private JButton vypocitatButton;
 
@@ -28,7 +30,7 @@ public class Aplikace extends JFrame {
     }
 
     public Aplikace() throws HeadlessException {
-        super("Farmářka Iva");
+        super("Farmářka Iva 2.0");
         this.init();
     }
 
@@ -43,21 +45,24 @@ public class Aplikace extends JFrame {
         setLayout(new MigLayout("wrap 2", "[right]rel[50:120:150,grow,fill]"));
         setMinimumSize(new Dimension(250, 200));
 
-        husyField = new JTextField();
-        husyField.setHorizontalAlignment(JTextField.TRAILING);
+       // husyField = new JTextField();
+        husySpinner = new JSpinner();
+        //husyField.setHorizontalAlignment(JTextField.TRAILING);
         husyLabel = new JLabel("Husy");
         husyLabel.setDisplayedMnemonic('H');
-        husyLabel.setLabelFor(husyField);
+        husyLabel.setLabelFor(husySpinner);
         add(husyLabel);
-        add(husyField, "span");
+        add(husySpinner, "span");
 
-        kraliciField = new JTextField();
-        kraliciField.setHorizontalAlignment(JTextField.TRAILING);
+        //kraliciField = new JTextField();
+        kraliciSpinner = new JSpinner();
+
+       //kraliciField.setHorizontalAlignment(JTextField.TRAILING);
         kraliciLabel = new JLabel("Králíci");
         kraliciLabel.setDisplayedMnemonic('K');
-        kraliciLabel.setLabelFor(kraliciField);
+       kraliciLabel.setLabelFor(kraliciSpinner);
         add(kraliciLabel);
-        add(kraliciField, "span");
+        add(kraliciSpinner, "span");
 
         add(createButtonBar(), "span");
 
@@ -97,7 +102,7 @@ public class Aplikace extends JFrame {
     }
 
     private void handleVypocitat(ActionEvent actionEvent) {
-        int pocetKraliku;
+        /*int pocetKraliku;
         try {
             pocetKraliku = (kraliciField.getText() != null && !kraliciField.getText().isBlank())
                     ? Integer.parseInt(kraliciField.getText()) : 0;
@@ -118,5 +123,13 @@ public class Aplikace extends JFrame {
         int pocetHlav = pocetKraliku + pocetHus;
         hlavyField.setText(String.valueOf(pocetHlav));
 
-    }
-}
+    }*/
+        int pocetKraliku = (int) kraliciSpinner.getValue();
+        int pocetHus = (int) husySpinner.getValue();
+
+        int pocetNoh = pocetKraliku * 4 + pocetHus * 2;
+        nohyField.setText(String.valueOf(pocetNoh));
+
+        int pocetHlav = pocetKraliku + pocetHus;
+        hlavyField.setText(String.valueOf(pocetHlav));
+}}
